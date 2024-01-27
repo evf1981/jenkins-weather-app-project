@@ -39,7 +39,7 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/code/auth") { 
                         sh """
-                        cat Dockerfile
+                           cat Dockerfile
                         """
                     }
                 }

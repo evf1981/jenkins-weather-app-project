@@ -36,7 +36,7 @@ pipeline {
         stage('Building Auth') {
             steps {
                 script{
-                    dir("${WORKSPACE}/code/auth") { 
+                    dir("${WORKSPACE}/code/code/auth") { 
                         sh """
                            cat Dockerfile
                         """

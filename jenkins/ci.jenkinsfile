@@ -49,7 +49,7 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/code") { 
                         sh """
-                        nproc
+                        pwd
                         """
                     }
                 }

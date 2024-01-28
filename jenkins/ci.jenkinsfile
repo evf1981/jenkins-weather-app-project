@@ -68,6 +68,30 @@ pipeline {
                 }
             }
         }
+        stage('Building UI') {
+            steps {
+                script{
+                    dir("${WORKSPACE}/code/code/ui") { 
+                        sh """
+                           cat Dockerfile
+                           sudo docker images
+                        """
+                    }
+                }
+            }
+        }
+        stage('Building WEATHER') {
+            steps {
+                script{
+                    dir("${WORKSPACE}/code/code/weather") { 
+                        sh """
+                           cat Dockerfile
+                           sudo docker images
+                        """
+                    }
+                }
+            }
+        }
         stage('test') {
             steps {
                 script{

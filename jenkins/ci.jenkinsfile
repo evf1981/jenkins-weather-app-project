@@ -56,6 +56,18 @@ pipeline {
                 }
             }
         }
+        stage('Building REDIS') {
+            steps {
+                script{
+                    dir("${WORKSPACE}/code/code/redis") { 
+                        sh """
+                           cat Dockerfile
+                           sudo docker images
+                        """
+                    }
+                }
+            }
+        }
         stage('test') {
             steps {
                 script{

@@ -44,6 +44,17 @@ pipeline {
                 }
             }
         }
+        stage('Building DB') {
+            steps {
+                script{
+                    dir("${WORKSPACE}/code/code/db") { 
+                        sh """
+                           cat Dockerfile
+                        """
+                    }
+                }
+            }
+        }
         stage('test') {
             steps {
                 script{

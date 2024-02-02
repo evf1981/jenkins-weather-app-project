@@ -5,6 +5,10 @@ pipeline {
     triggers {
         githubPush()
     }
+     environment {
+        DOCKER_HUB_REGISTRY = "eric1981"
+        DOCKER_HUB_REGISTRY_DEL = "devopseasylearning"
+    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '7'))
         skipDefaultCheckout(true)
@@ -14,6 +18,11 @@ pipeline {
     }
     parameters {
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: '')
+        string (name: 'UI_IMAGE_TAG', defaultValue: 'latest', description: '')
+        string (name: 'AUTH_IMAGE_TAG', defaultValue: 'latest', description: '')
+        string (name: 'WEATHER_IMAGE_TAG', defaultValue: 'latest', description: '')
+        string (name: 'REDIS_IMAGE_TAG', defaultValue: 'latest', description: '')
+        string (name: 'DB_IMAGE_TAG', defaultValue: 'latest', description: '')
     }
     stages {
         stage('Sanity Check') {
@@ -58,8 +67,10 @@ pipeline {
                     dir("${WORKSPACE}/application/code/auth") { 
                         sh """
                            cat Dockerfile
+                           sudo docker build -t ${env.DOCKER_HUB_REGISTRY}/auth-a1:${params.AUTH_IMAGE_TAG} .
+                           sudo docker tag ${env.DOCKER_HUB_REGISTRY}/auth-a1:${params.AUTH_IMAGE_TAG} ${env.DOCKER_HUB_REGISTRY_DEL}/auth-a1:${params.AUTH_IMAGE_TAG}
                            sudo docker images
-                        """
+                           """
                     }
                 }
             }

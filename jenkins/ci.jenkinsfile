@@ -149,8 +149,8 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/application/code/auth") { 
                         sh """
-                           sudo docker images
-                        """
+                           sudo docker push ${env.DOCKER_HUB_REGISTRY_DEL}/auth-a1:${params.AUTH_IMAGE_TAG}
+                           """
                     }
                 }
             }
@@ -160,8 +160,8 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/application/code/db") { 
                         sh """
-                           sudo docker images
-                        """
+                           sudo docker push ${env.DOCKER_HUB_REGISTRY_DEL}/db-a1:${params.DB_IMAGE_TAG}
+                           """
                     }
                 }
             }
@@ -171,7 +171,7 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/application/code/redis") { 
                         sh """
-                           sudo docker images
+                           sudo docker push ${env.DOCKER_HUB_REGISTRY_DEL}/redis-a1:${params.REDIS_IMAGE_TAG}
                         """
                     }
                 }
@@ -182,7 +182,7 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/application/code/ui") { 
                         sh """
-                           sudo docker images
+                           sudo docker push ${env.DOCKER_HUB_REGISTRY_DEL}/ui-a1:${params.UI_IMAGE_TAG}
                         """
                     }
                 }
@@ -193,7 +193,7 @@ pipeline {
                 script{
                     dir("${WORKSPACE}/application/code/weather") { 
                         sh """
-                           sudo docker images
+                           sudo docker push ${env.DOCKER_HUB_REGISTRY_DEL}/weather-a1:${params.WEATHER_IMAGE_TAG}
                         """
                     }
                 }
